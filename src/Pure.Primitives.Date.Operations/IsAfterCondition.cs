@@ -1,6 +1,7 @@
 ﻿using Pure.Primitives.Abstractions.Bool;
 using Pure.Primitives.Abstractions.Date;
-using Pure.Primitives.Bool.Operations;
+using Pure.Primitives.Bool;
+using Pure.Primitives.Choices.Bool;
 using Pure.Primitives.Number.Operations;
 
 namespace Pure.Primitives.Date.Operations;
@@ -20,12 +21,22 @@ public sealed record IsAfterCondition : IBool
     {
         get
         {
-            IBool condition = new Or(
-                new GreaterThanCondition<ushort>(_values.Select(x => x.Year)),
-                new GreaterThanCondition<ushort>(_values.Select(x => x.Month)),
-                new GreaterThanCondition<ushort>(_values.Select(x => x.Day)));
+            IBool result =
+                new BoolChoice(
+                    new GreaterThanCondition<ushort>(_values.Select(x => x.Year)),
+                    new True(),
+                    new BoolChoice(
+                        new NotEqualCondition<ushort>(_values.Select(x => x.Year)),
+                        new False(),
+                        new BoolChoice(new GreaterThanCondition<ushort>(_values.Select(x => x.Month)),
+                            new True(),
+                            new BoolChoice(new NotEqualCondition<ushort>(_values.Select(x => x.Month)),
+                                new False(),
+                                new BoolChoice(new GreaterThanCondition<ushort>(_values.Select(x => x.Day)),
+                                    new True(),
+                                    new False())))));
 
-            return condition.BoolValue;
+            return result.BoolValue;
         }
     }
 
