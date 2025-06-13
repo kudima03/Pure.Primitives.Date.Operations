@@ -14,9 +14,10 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/kudima03/Pure.Primitives.Date.Operations</PackageProjectUrl>
   </PropertyGroup>
-   
+
   <ItemGroup>
-    <PackageReference Include="Pure.Primitives.Abstractions" Version="4.0.4" />
+    <PackageReference Include="Pure.Primitives.Bool.Operations" Version="0.2.0" />
+    <PackageReference Include="Pure.Primitives.Number.Operations" Version="1.0.2" />
   </ItemGroup>
 
 </Project>
