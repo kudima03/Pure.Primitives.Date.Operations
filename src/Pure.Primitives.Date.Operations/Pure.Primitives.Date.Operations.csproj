@@ -6,6 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <PackageId>Pure.Primitives.Date.Operations</PackageId>
+    <RootNamespace>Pure.Primitives.Date.Operations</RootNamespace>
+    <AssemblyName>Pure.Primitives.Date.Operations</AssemblyName>
+    <Authors>Dmitry Kurochkin</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/kudima03/Pure.Primitives.Date.Operations</PackageProjectUrl>
+  </PropertyGroup>
+   
   <ItemGroup>
     <PackageReference Include="Pure.Primitives.Abstractions" Version="4.0.4" />
   </ItemGroup>
