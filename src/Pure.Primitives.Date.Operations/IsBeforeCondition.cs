@@ -23,21 +23,22 @@ public sealed record IsBeforeCondition : IBool
                 throw new ArgumentException();
             }
 
-            using IEnumerator<DateOnly> dates = _values.Select(x =>
-                new DateOnly(x.Year.NumberValue, x.Month.NumberValue, x.Day.NumberValue)).GetEnumerator();
+            IEnumerable<DateOnly> dates = 
+                _values.Select(x => new DateOnly(
+                    x.Year.NumberValue, 
+                    x.Month.NumberValue, 
+                    x.Day.NumberValue));
 
-            dates.MoveNext();
+            DateOnly prev = DateOnly.MinValue;
 
-            DateOnly prev = dates.Current;
-
-            while (dates.MoveNext())
+            foreach (DateOnly date in dates)
             {
-                if (prev >= dates.Current)
+                if (prev >= date)
                 {
                     return false;
                 }
 
-                prev = dates.Current;
+                prev = date;
             }
 
             return true;
