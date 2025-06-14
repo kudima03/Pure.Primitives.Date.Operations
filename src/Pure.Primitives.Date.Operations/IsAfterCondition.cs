@@ -36,6 +36,8 @@ public sealed record IsAfterCondition : IBool
                 {
                     return false;
                 }
+
+                prev = dates.Current;
             }
 
             return true;
