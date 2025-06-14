@@ -1,5 +1,7 @@
 ﻿using Pure.Primitives.Abstractions.Bool;
+using Pure.Primitives.Abstractions.Date;
 using Pure.Primitives.Abstractions.Number;
+using Pure.Primitives.Materialized.Date;
 using Pure.Primitives.Number;
 using Pure.Primitives.Random.Date;
 
@@ -8,10 +10,59 @@ namespace Pure.Primitives.Date.Operations.Tests;
 public sealed record IsAfterConditionTests
 {
     [Fact]
+    public void TakesPositiveResultOnOrderedRandoms()
+    {
+        IEnumerable<IDate> randomDates = new RandomDateCollection(new UShort(1000))
+            .Select(x => new MaterializedDate(x).Value)
+            .Distinct()
+            .OrderByDescending(x => x.Year)
+            .ThenByDescending(x => x.Month)
+            .ThenByDescending(x => x.Day)
+            .Select(x => new Date(x));
+
+        IBool isAfter = new IsAfterCondition(randomDates);
+
+        Assert.True(isAfter.BoolValue);
+    }
+
+    [Fact]
     public void TakesNegativeResultOnSameValues()
     {
         IBool isGreaterThan = new IsAfterCondition(new CurrentDate(), new CurrentDate(), new CurrentDate());
         Assert.False(isGreaterThan.BoolValue);
+    }
+
+    [Fact]
+    public void TakesNegativeResultOnAllAscendingAndDescendingDays()
+    {
+        IBool isGreaterThan = new IsAfterCondition(
+            new Date(new UShort(3), new UShort(1), new UShort(2000)),
+            new Date(new UShort(2), new UShort(2), new UShort(2001)),
+            new Date(new UShort(1), new UShort(3), new UShort(2002)));
+
+        Assert.False(isGreaterThan.BoolValue);
+    }
+
+    [Fact]
+    public void TakesNegativeResultOnAllAscendingAndDescendingMonths()
+    {
+        IBool isGreaterThan = new IsAfterCondition(
+            new Date(new UShort(1), new UShort(3), new UShort(2000)),
+            new Date(new UShort(2), new UShort(2), new UShort(2001)),
+            new Date(new UShort(3), new UShort(1), new UShort(2002)));
+
+        Assert.False(isGreaterThan.BoolValue);
+    }
+
+    [Fact]
+    public void TakesNegativeResultOnAllAscendingAndDescendingYears()
+    {
+        IBool isGreaterThan = new IsAfterCondition(
+            new Date(new UShort(1), new UShort(1), new UShort(2002)),
+            new Date(new UShort(2), new UShort(2), new UShort(2001)),
+            new Date(new UShort(3), new UShort(3), new UShort(2000)));
+
+        Assert.True(isGreaterThan.BoolValue);
     }
 
     [Fact]
