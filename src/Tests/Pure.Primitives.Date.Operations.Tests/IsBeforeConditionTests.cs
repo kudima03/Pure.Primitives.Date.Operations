@@ -10,6 +10,20 @@ namespace Pure.Primitives.Date.Operations.Tests;
 public sealed record IsBeforeConditionTests
 {
     [Fact]
+    public void TakesNegativeResultOnUnorderedLast()
+    {
+        INumber<ushort> year = new UShort(2000);
+        INumber<ushort> month = new UShort(2);
+
+        IBool isGreaterThan = new IsAfterCondition(
+            new Date(new UShort(1), month, year),
+            new Date(new UShort(3), month, year),
+            new Date(new UShort(2), month, year));
+
+        Assert.False(isGreaterThan.BoolValue);
+    }
+
+    [Fact]
     public void TakesPositiveResultOnOrderedRandoms()
     {
         IEnumerable<IDate> randomDates = new RandomDateCollection(new UShort(1000))
