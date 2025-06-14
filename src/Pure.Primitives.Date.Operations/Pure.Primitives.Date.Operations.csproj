@@ -16,10 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Pure.Primitives" Version="3.0.0" />
-    <PackageReference Include="Pure.Primitives.Bool.Operations" Version="0.2.0" />
-    <PackageReference Include="Pure.Primitives.Choices" Version="0.3.0" />
-    <PackageReference Include="Pure.Primitives.Number.Operations" Version="1.0.2" />
+    <PackageReference Include="Pure.Primitives.Abstractions" Version="4.0.4" />
   </ItemGroup>
 
 </Project>
