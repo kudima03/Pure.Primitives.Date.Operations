@@ -23,10 +23,10 @@ public sealed record IsBeforeCondition : IBool
                 throw new ArgumentException();
             }
 
-            IEnumerable<DateOnly> dates = 
+            IEnumerable<DateOnly> dates =
                 _values.Select(x => new DateOnly(
-                    x.Year.NumberValue, 
-                    x.Month.NumberValue, 
+                    x.Year.NumberValue,
+                    x.Month.NumberValue,
                     x.Day.NumberValue));
 
             DateOnly prev = DateOnly.MinValue;
