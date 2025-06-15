@@ -7,7 +7,7 @@ using Pure.Primitives.Random.Date;
 
 namespace Pure.Primitives.Date.Operations.Tests;
 
-public sealed record IsAfterConditionTests
+public sealed record AfterConditionTests
 {
     [Fact]
     public void TakesNegativeResultOnUnOrderedLast()
@@ -15,7 +15,7 @@ public sealed record IsAfterConditionTests
         INumber<ushort> year = new UShort(2000);
         INumber<ushort> month = new UShort(2);
 
-        IBool isGreaterThan = new IsAfterCondition(
+        IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(4), month, year),
             new Date(new UShort(2), month, year),
             new Date(new UShort(3), month, year));
@@ -33,7 +33,7 @@ public sealed record IsAfterConditionTests
             .ThenByDescending(x => x.Day)
             .Select(x => new Date(x));
 
-        IBool isAfter = new IsAfterCondition(randomDates);
+        IBool isAfter = new AfterCondition(randomDates);
 
         Assert.True(isAfter.BoolValue);
     }
@@ -41,14 +41,14 @@ public sealed record IsAfterConditionTests
     [Fact]
     public void TakesNegativeResultOnSameValues()
     {
-        IBool isGreaterThan = new IsAfterCondition(new CurrentDate(), new CurrentDate(), new CurrentDate());
+        IBool isGreaterThan = new AfterCondition(new CurrentDate(), new CurrentDate(), new CurrentDate());
         Assert.False(isGreaterThan.BoolValue);
     }
 
     [Fact]
     public void TakesNegativeResultOnAllAscendingAndDescendingDays()
     {
-        IBool isGreaterThan = new IsAfterCondition(
+        IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(3), new UShort(1), new UShort(2000)),
             new Date(new UShort(2), new UShort(2), new UShort(2001)),
             new Date(new UShort(1), new UShort(3), new UShort(2002)));
@@ -59,7 +59,7 @@ public sealed record IsAfterConditionTests
     [Fact]
     public void TakesNegativeResultOnAllAscendingAndDescendingMonths()
     {
-        IBool isGreaterThan = new IsAfterCondition(
+        IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(1), new UShort(3), new UShort(2000)),
             new Date(new UShort(2), new UShort(2), new UShort(2001)),
             new Date(new UShort(3), new UShort(1), new UShort(2002)));
@@ -70,7 +70,7 @@ public sealed record IsAfterConditionTests
     [Fact]
     public void TakesNegativeResultOnAllAscendingAndDescendingYears()
     {
-        IBool isGreaterThan = new IsAfterCondition(
+        IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(1), new UShort(1), new UShort(2002)),
             new Date(new UShort(2), new UShort(2), new UShort(2001)),
             new Date(new UShort(3), new UShort(3), new UShort(2000)));
@@ -84,7 +84,7 @@ public sealed record IsAfterConditionTests
         INumber<ushort> year = new UShort(2000);
         INumber<ushort> month = new UShort(2);
 
-        IBool isGreaterThan = new IsAfterCondition(
+        IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(1), month, year),
             new Date(new UShort(2), month, year),
             new Date(new UShort(3), month, year));
@@ -97,7 +97,7 @@ public sealed record IsAfterConditionTests
     {
         INumber<ushort> year = new UShort(2000);
 
-        IBool isGreaterThan = new IsAfterCondition(
+        IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(1), new UShort(1), year),
             new Date(new UShort(1), new UShort(2), year),
             new Date(new UShort(1), new UShort(3), year));
@@ -108,7 +108,7 @@ public sealed record IsAfterConditionTests
     [Fact]
     public void TakesNegativeResultOnAscendingYears()
     {
-        IBool isGreaterThan = new IsAfterCondition(
+        IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(1), new UShort(1), new UShort(2000)),
             new Date(new UShort(1), new UShort(1), new UShort(2001)),
             new Date(new UShort(1), new UShort(1), new UShort(2002)));
@@ -122,7 +122,7 @@ public sealed record IsAfterConditionTests
         INumber<ushort> year = new UShort(2000);
         INumber<ushort> month = new UShort(2);
 
-        IBool isGreaterThan = new IsAfterCondition(
+        IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(3), month, year),
             new Date(new UShort(2), month, year),
             new Date(new UShort(1), month, year));
@@ -135,7 +135,7 @@ public sealed record IsAfterConditionTests
     {
         INumber<ushort> year = new UShort(2000);
 
-        IBool isGreaterThan = new IsAfterCondition(
+        IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(1), new UShort(3), year),
             new Date(new UShort(1), new UShort(2), year),
             new Date(new UShort(1), new UShort(1), year));
@@ -146,7 +146,7 @@ public sealed record IsAfterConditionTests
     [Fact]
     public void TakesPositiveResultOnDescendingYears()
     {
-        IBool isGreaterThan = new IsAfterCondition(
+        IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(1), new UShort(1), new UShort(2003)),
             new Date(new UShort(1), new UShort(1), new UShort(2002)),
             new Date(new UShort(1), new UShort(1), new UShort(2001)));
@@ -157,7 +157,7 @@ public sealed record IsAfterConditionTests
     [Fact]
     public void TakesNegativeResultOnAllAscendingOneSameValue()
     {
-        IBool isGreaterThan = new IsAfterCondition(
+        IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(1), new UShort(1), new UShort(2000)),
             new Date(new UShort(1), new UShort(1), new UShort(2001)),
             new Date(new UShort(1), new UShort(1), new UShort(2002)),
@@ -169,33 +169,33 @@ public sealed record IsAfterConditionTests
     [Fact]
     public void TakesPositiveResultOnSingleElementInCollection()
     {
-        IBool isGreaterThan = new IsAfterCondition(new CurrentDate());
+        IBool isGreaterThan = new AfterCondition(new CurrentDate());
         Assert.True(isGreaterThan.BoolValue);
     }
 
     [Fact]
     public void ThrowsExceptionOnEmptyCollection()
     {
-        IBool isGreaterThan = new IsAfterCondition();
+        IBool isGreaterThan = new AfterCondition();
         Assert.Throws<ArgumentException>(() => isGreaterThan.BoolValue);
     }
 
     [Fact]
     public void ThrowsExceptionOnEmptyArguments()
     {
-        IBool equality = new IsAfterCondition();
+        IBool equality = new AfterCondition();
         Assert.Throws<ArgumentException>(() => equality.BoolValue);
     }
 
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() => new IsAfterCondition(new CurrentDate()).GetHashCode());
+        Assert.Throws<NotSupportedException>(() => new AfterCondition(new CurrentDate()).GetHashCode());
     }
 
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() => new IsAfterCondition(new CurrentDate()).ToString());
+        Assert.Throws<NotSupportedException>(() => new AfterCondition(new CurrentDate()).ToString());
     }
 }

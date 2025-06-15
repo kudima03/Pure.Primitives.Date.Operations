@@ -15,7 +15,7 @@ public sealed record IsBeforeConditionTests
         INumber<ushort> year = new UShort(2000);
         INumber<ushort> month = new UShort(2);
 
-        IBool isGreaterThan = new IsAfterCondition(
+        IBool isGreaterThan = new IsBeforeCondition(
             new Date(new UShort(1), month, year),
             new Date(new UShort(3), month, year),
             new Date(new UShort(2), month, year));
