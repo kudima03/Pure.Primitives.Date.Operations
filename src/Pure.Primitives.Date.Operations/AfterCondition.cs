@@ -3,13 +3,13 @@ using Pure.Primitives.Abstractions.Date;
 
 namespace Pure.Primitives.Date.Operations;
 
-public sealed record IsAfterCondition : IBool
+public sealed record AfterCondition : IBool
 {
     private readonly IEnumerable<IDate> _values;
 
-    public IsAfterCondition(params IDate[] values) : this(values.AsReadOnly()) { }
+    public AfterCondition(params IDate[] values) : this(values.AsReadOnly()) { }
 
-    public IsAfterCondition(IEnumerable<IDate> values)
+    public AfterCondition(IEnumerable<IDate> values)
     {
         _values = values;
     }
