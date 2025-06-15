@@ -7,7 +7,7 @@ using Pure.Primitives.Random.Date;
 
 namespace Pure.Primitives.Date.Operations.Tests;
 
-public sealed record IsBeforeConditionTests
+public sealed record BeforeConditionTests
 {
     [Fact]
     public void TakesNegativeResultOnUnorderedLast()
@@ -15,7 +15,7 @@ public sealed record IsBeforeConditionTests
         INumber<ushort> year = new UShort(2000);
         INumber<ushort> month = new UShort(2);
 
-        IBool isGreaterThan = new IsBeforeCondition(
+        IBool isGreaterThan = new BeforeCondition(
             new Date(new UShort(1), month, year),
             new Date(new UShort(3), month, year),
             new Date(new UShort(2), month, year));
@@ -34,7 +34,7 @@ public sealed record IsBeforeConditionTests
             .ThenBy(x => x.Day)
             .Select(x => new Date(x));
 
-        IBool before = new IsBeforeCondition(randomDates);
+        IBool before = new BeforeCondition(randomDates);
 
         Assert.True(before.BoolValue);
     }
@@ -42,14 +42,14 @@ public sealed record IsBeforeConditionTests
     [Fact]
     public void TakesNegativeResultOnSameValues()
     {
-        IBool before = new IsBeforeCondition(new CurrentDate(), new CurrentDate(), new CurrentDate());
+        IBool before = new BeforeCondition(new CurrentDate(), new CurrentDate(), new CurrentDate());
         Assert.False(before.BoolValue);
     }
 
     [Fact]
     public void TakesPositiveResultOnAllAscendingAndDescendingDays()
     {
-        IBool before = new IsBeforeCondition(
+        IBool before = new BeforeCondition(
             new Date(new UShort(3), new UShort(1), new UShort(2000)),
             new Date(new UShort(2), new UShort(2), new UShort(2001)),
             new Date(new UShort(1), new UShort(3), new UShort(2002)));
@@ -60,7 +60,7 @@ public sealed record IsBeforeConditionTests
     [Fact]
     public void TakesPositiveResultOnAllAscendingAndDescendingMonths()
     {
-        IBool before = new IsBeforeCondition(
+        IBool before = new BeforeCondition(
             new Date(new UShort(1), new UShort(3), new UShort(2000)),
             new Date(new UShort(2), new UShort(2), new UShort(2001)),
             new Date(new UShort(3), new UShort(1), new UShort(2002)));
@@ -71,7 +71,7 @@ public sealed record IsBeforeConditionTests
     [Fact]
     public void TakesNegativeResultOnAllAscendingAndDescendingYears()
     {
-        IBool isBeforeCondition = new IsBeforeCondition(
+        IBool isBeforeCondition = new BeforeCondition(
             new Date(new UShort(1), new UShort(1), new UShort(2002)),
             new Date(new UShort(2), new UShort(2), new UShort(2001)),
             new Date(new UShort(3), new UShort(3), new UShort(2000)));
@@ -85,7 +85,7 @@ public sealed record IsBeforeConditionTests
         INumber<ushort> year = new UShort(2000);
         INumber<ushort> month = new UShort(2);
 
-        IBool isBeforeCondition = new IsBeforeCondition(
+        IBool isBeforeCondition = new BeforeCondition(
             new Date(new UShort(1), month, year),
             new Date(new UShort(2), month, year),
             new Date(new UShort(3), month, year));
@@ -98,7 +98,7 @@ public sealed record IsBeforeConditionTests
     {
         INumber<ushort> year = new UShort(2000);
 
-        IBool isBeforeCondition = new IsBeforeCondition(
+        IBool isBeforeCondition = new BeforeCondition(
             new Date(new UShort(1), new UShort(1), year),
             new Date(new UShort(1), new UShort(2), year),
             new Date(new UShort(1), new UShort(3), year));
@@ -109,7 +109,7 @@ public sealed record IsBeforeConditionTests
     [Fact]
     public void TakesPositiveResultOnAscendingYears()
     {
-        IBool isBeforeCondition = new IsBeforeCondition(
+        IBool isBeforeCondition = new BeforeCondition(
             new Date(new UShort(1), new UShort(1), new UShort(2000)),
             new Date(new UShort(1), new UShort(1), new UShort(2001)),
             new Date(new UShort(1), new UShort(1), new UShort(2002)));
@@ -123,7 +123,7 @@ public sealed record IsBeforeConditionTests
         INumber<ushort> year = new UShort(2000);
         INumber<ushort> month = new UShort(2);
 
-        IBool isBeforeCondition = new IsBeforeCondition(
+        IBool isBeforeCondition = new BeforeCondition(
             new Date(new UShort(3), month, year),
             new Date(new UShort(2), month, year),
             new Date(new UShort(1), month, year));
@@ -136,7 +136,7 @@ public sealed record IsBeforeConditionTests
     {
         INumber<ushort> year = new UShort(2000);
 
-        IBool isBeforeCondition = new IsBeforeCondition(
+        IBool isBeforeCondition = new BeforeCondition(
             new Date(new UShort(1), new UShort(3), year),
             new Date(new UShort(1), new UShort(2), year),
             new Date(new UShort(1), new UShort(1), year));
@@ -147,7 +147,7 @@ public sealed record IsBeforeConditionTests
     [Fact]
     public void TakesNegativeResultOnDescendingYears()
     {
-        IBool isBeforeCondition = new IsBeforeCondition(
+        IBool isBeforeCondition = new BeforeCondition(
             new Date(new UShort(1), new UShort(1), new UShort(2003)),
             new Date(new UShort(1), new UShort(1), new UShort(2002)),
             new Date(new UShort(1), new UShort(1), new UShort(2001)));
@@ -158,7 +158,7 @@ public sealed record IsBeforeConditionTests
     [Fact]
     public void TakesNegativeResultOnAllAscendingOneSameValue()
     {
-        IBool isBeforeCondition = new IsBeforeCondition(
+        IBool isBeforeCondition = new BeforeCondition(
             new Date(new UShort(1), new UShort(1), new UShort(2000)),
             new Date(new UShort(1), new UShort(1), new UShort(2001)),
             new Date(new UShort(1), new UShort(1), new UShort(2002)),
@@ -170,33 +170,33 @@ public sealed record IsBeforeConditionTests
     [Fact]
     public void TakesPositiveResultOnSingleElementInCollection()
     {
-        IBool isBeforeCondition = new IsBeforeCondition(new CurrentDate());
+        IBool isBeforeCondition = new BeforeCondition(new CurrentDate());
         Assert.True(isBeforeCondition.BoolValue);
     }
 
     [Fact]
     public void ThrowsExceptionOnEmptyCollection()
     {
-        IBool isBeforeCondition = new IsBeforeCondition();
+        IBool isBeforeCondition = new BeforeCondition();
         Assert.Throws<ArgumentException>(() => isBeforeCondition.BoolValue);
     }
 
     [Fact]
     public void ThrowsExceptionOnEmptyArguments()
     {
-        IBool equality = new IsBeforeCondition();
+        IBool equality = new BeforeCondition();
         Assert.Throws<ArgumentException>(() => equality.BoolValue);
     }
 
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() => new IsBeforeCondition(new CurrentDate()).GetHashCode());
+        Assert.Throws<NotSupportedException>(() => new BeforeCondition(new CurrentDate()).GetHashCode());
     }
 
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() => new IsBeforeCondition(new CurrentDate()).ToString());
+        Assert.Throws<NotSupportedException>(() => new BeforeCondition(new CurrentDate()).ToString());
     }
 }
