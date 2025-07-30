@@ -7,9 +7,7 @@ public sealed record NotAfterCondition : IBool
 {
     private readonly IEnumerable<IDate> _values;
 
-    public NotAfterCondition(params IDate[] values) : this(values.AsReadOnly()) { }
-
-    public NotAfterCondition(IEnumerable<IDate> values)
+    public NotAfterCondition(params IEnumerable<IDate> values)
     {
         _values = values;
     }
