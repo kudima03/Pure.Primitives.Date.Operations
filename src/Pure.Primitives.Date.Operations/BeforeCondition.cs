@@ -7,9 +7,7 @@ public sealed record BeforeCondition : IBool
 {
     private readonly IEnumerable<IDate> _values;
 
-    public BeforeCondition(params IDate[] values) : this(values.AsReadOnly()) { }
-
-    public BeforeCondition(IEnumerable<IDate> values)
+    public BeforeCondition(params IEnumerable<IDate> values)
     {
         _values = values;
     }
