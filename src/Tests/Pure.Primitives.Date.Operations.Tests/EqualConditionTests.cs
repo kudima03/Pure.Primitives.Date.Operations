@@ -1,4 +1,4 @@
-﻿using Pure.Primitives.Abstractions.Bool;
+using Pure.Primitives.Abstractions.Bool;
 using Pure.Primitives.Number;
 using Pure.Primitives.Random.Date;
 
@@ -14,7 +14,8 @@ public sealed record EqualConditionTests
             new CurrentDate(),
             new CurrentDate(),
             new CurrentDate(),
-            new CurrentDate());
+            new CurrentDate()
+        );
 
         Assert.True(equality.BoolValue);
     }
@@ -44,7 +45,8 @@ public sealed record EqualConditionTests
             new CurrentDate(),
             new CurrentDate(),
             new CurrentDate(),
-            new RandomDate());
+            new RandomDate()
+        );
 
         Assert.False(equality.BoolValue);
     }
@@ -60,18 +62,22 @@ public sealed record EqualConditionTests
     public void ThrowsExceptionOnEmptyArguments()
     {
         IBool equality = new EqualCondition();
-        Assert.Throws<ArgumentException>(() => equality.BoolValue);
+        _ = Assert.Throws<ArgumentException>(() => equality.BoolValue);
     }
 
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() => new EqualCondition(new CurrentDate()).GetHashCode());
+        _ = Assert.Throws<NotSupportedException>(() =>
+            new EqualCondition(new CurrentDate()).GetHashCode()
+        );
     }
 
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() => new EqualCondition(new CurrentDate()).ToString());
+        _ = Assert.Throws<NotSupportedException>(() =>
+            new EqualCondition(new CurrentDate()).ToString()
+        );
     }
 }

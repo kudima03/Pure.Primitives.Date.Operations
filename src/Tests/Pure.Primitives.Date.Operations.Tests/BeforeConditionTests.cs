@@ -1,4 +1,4 @@
-﻿using Pure.Primitives.Abstractions.Bool;
+using Pure.Primitives.Abstractions.Bool;
 using Pure.Primitives.Abstractions.Date;
 using Pure.Primitives.Abstractions.Number;
 using Pure.Primitives.Materialized.Date;
@@ -18,7 +18,8 @@ public sealed record BeforeConditionTests
         IBool isGreaterThan = new BeforeCondition(
             new Date(new UShort(1), month, year),
             new Date(new UShort(3), month, year),
-            new Date(new UShort(2), month, year));
+            new Date(new UShort(2), month, year)
+        );
 
         Assert.False(isGreaterThan.BoolValue);
     }
@@ -42,7 +43,11 @@ public sealed record BeforeConditionTests
     [Fact]
     public void TakesNegativeResultOnSameValues()
     {
-        IBool before = new BeforeCondition(new CurrentDate(), new CurrentDate(), new CurrentDate());
+        IBool before = new BeforeCondition(
+            new CurrentDate(),
+            new CurrentDate(),
+            new CurrentDate()
+        );
         Assert.False(before.BoolValue);
     }
 
@@ -52,7 +57,8 @@ public sealed record BeforeConditionTests
         IBool before = new BeforeCondition(
             new Date(new UShort(3), new UShort(1), new UShort(2000)),
             new Date(new UShort(2), new UShort(2), new UShort(2001)),
-            new Date(new UShort(1), new UShort(3), new UShort(2002)));
+            new Date(new UShort(1), new UShort(3), new UShort(2002))
+        );
 
         Assert.True(before.BoolValue);
     }
@@ -63,7 +69,8 @@ public sealed record BeforeConditionTests
         IBool before = new BeforeCondition(
             new Date(new UShort(1), new UShort(3), new UShort(2000)),
             new Date(new UShort(2), new UShort(2), new UShort(2001)),
-            new Date(new UShort(3), new UShort(1), new UShort(2002)));
+            new Date(new UShort(3), new UShort(1), new UShort(2002))
+        );
 
         Assert.True(before.BoolValue);
     }
@@ -74,7 +81,8 @@ public sealed record BeforeConditionTests
         IBool isBeforeCondition = new BeforeCondition(
             new Date(new UShort(1), new UShort(1), new UShort(2002)),
             new Date(new UShort(2), new UShort(2), new UShort(2001)),
-            new Date(new UShort(3), new UShort(3), new UShort(2000)));
+            new Date(new UShort(3), new UShort(3), new UShort(2000))
+        );
 
         Assert.False(isBeforeCondition.BoolValue);
     }
@@ -88,7 +96,8 @@ public sealed record BeforeConditionTests
         IBool isBeforeCondition = new BeforeCondition(
             new Date(new UShort(1), month, year),
             new Date(new UShort(2), month, year),
-            new Date(new UShort(3), month, year));
+            new Date(new UShort(3), month, year)
+        );
 
         Assert.True(isBeforeCondition.BoolValue);
     }
@@ -101,7 +110,8 @@ public sealed record BeforeConditionTests
         IBool isBeforeCondition = new BeforeCondition(
             new Date(new UShort(1), new UShort(1), year),
             new Date(new UShort(1), new UShort(2), year),
-            new Date(new UShort(1), new UShort(3), year));
+            new Date(new UShort(1), new UShort(3), year)
+        );
 
         Assert.True(isBeforeCondition.BoolValue);
     }
@@ -112,7 +122,8 @@ public sealed record BeforeConditionTests
         IBool isBeforeCondition = new BeforeCondition(
             new Date(new UShort(1), new UShort(1), new UShort(2000)),
             new Date(new UShort(1), new UShort(1), new UShort(2001)),
-            new Date(new UShort(1), new UShort(1), new UShort(2002)));
+            new Date(new UShort(1), new UShort(1), new UShort(2002))
+        );
 
         Assert.True(isBeforeCondition.BoolValue);
     }
@@ -126,7 +137,8 @@ public sealed record BeforeConditionTests
         IBool isBeforeCondition = new BeforeCondition(
             new Date(new UShort(3), month, year),
             new Date(new UShort(2), month, year),
-            new Date(new UShort(1), month, year));
+            new Date(new UShort(1), month, year)
+        );
 
         Assert.False(isBeforeCondition.BoolValue);
     }
@@ -139,7 +151,8 @@ public sealed record BeforeConditionTests
         IBool isBeforeCondition = new BeforeCondition(
             new Date(new UShort(1), new UShort(3), year),
             new Date(new UShort(1), new UShort(2), year),
-            new Date(new UShort(1), new UShort(1), year));
+            new Date(new UShort(1), new UShort(1), year)
+        );
 
         Assert.False(isBeforeCondition.BoolValue);
     }
@@ -150,7 +163,8 @@ public sealed record BeforeConditionTests
         IBool isBeforeCondition = new BeforeCondition(
             new Date(new UShort(1), new UShort(1), new UShort(2003)),
             new Date(new UShort(1), new UShort(1), new UShort(2002)),
-            new Date(new UShort(1), new UShort(1), new UShort(2001)));
+            new Date(new UShort(1), new UShort(1), new UShort(2001))
+        );
 
         Assert.False(isBeforeCondition.BoolValue);
     }
@@ -162,7 +176,8 @@ public sealed record BeforeConditionTests
             new Date(new UShort(1), new UShort(1), new UShort(2000)),
             new Date(new UShort(1), new UShort(1), new UShort(2001)),
             new Date(new UShort(1), new UShort(1), new UShort(2002)),
-            new Date(new UShort(1), new UShort(1), new UShort(2002)));
+            new Date(new UShort(1), new UShort(1), new UShort(2002))
+        );
 
         Assert.False(isBeforeCondition.BoolValue);
     }
@@ -178,25 +193,29 @@ public sealed record BeforeConditionTests
     public void ThrowsExceptionOnEmptyCollection()
     {
         IBool isBeforeCondition = new BeforeCondition();
-        Assert.Throws<ArgumentException>(() => isBeforeCondition.BoolValue);
+        _ = Assert.Throws<ArgumentException>(() => isBeforeCondition.BoolValue);
     }
 
     [Fact]
     public void ThrowsExceptionOnEmptyArguments()
     {
         IBool equality = new BeforeCondition();
-        Assert.Throws<ArgumentException>(() => equality.BoolValue);
+        _ = Assert.Throws<ArgumentException>(() => equality.BoolValue);
     }
 
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() => new BeforeCondition(new CurrentDate()).GetHashCode());
+        _ = Assert.Throws<NotSupportedException>(() =>
+            new BeforeCondition(new CurrentDate()).GetHashCode()
+        );
     }
 
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() => new BeforeCondition(new CurrentDate()).ToString());
+        _ = Assert.Throws<NotSupportedException>(() =>
+            new BeforeCondition(new CurrentDate()).ToString()
+        );
     }
 }
