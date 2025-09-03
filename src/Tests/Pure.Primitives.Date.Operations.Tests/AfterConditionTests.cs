@@ -1,4 +1,4 @@
-﻿using Pure.Primitives.Abstractions.Bool;
+using Pure.Primitives.Abstractions.Bool;
 using Pure.Primitives.Abstractions.Date;
 using Pure.Primitives.Abstractions.Number;
 using Pure.Primitives.Materialized.Date;
@@ -18,10 +18,12 @@ public sealed record AfterConditionTests
         IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(4), month, year),
             new Date(new UShort(2), month, year),
-            new Date(new UShort(3), month, year));
+            new Date(new UShort(3), month, year)
+        );
 
         Assert.False(isGreaterThan.BoolValue);
     }
+
     [Fact]
     public void TakesPositiveResultOnOrderedRandoms()
     {
@@ -41,7 +43,11 @@ public sealed record AfterConditionTests
     [Fact]
     public void TakesNegativeResultOnSameValues()
     {
-        IBool isGreaterThan = new AfterCondition(new CurrentDate(), new CurrentDate(), new CurrentDate());
+        IBool isGreaterThan = new AfterCondition(
+            new CurrentDate(),
+            new CurrentDate(),
+            new CurrentDate()
+        );
         Assert.False(isGreaterThan.BoolValue);
     }
 
@@ -51,7 +57,8 @@ public sealed record AfterConditionTests
         IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(3), new UShort(1), new UShort(2000)),
             new Date(new UShort(2), new UShort(2), new UShort(2001)),
-            new Date(new UShort(1), new UShort(3), new UShort(2002)));
+            new Date(new UShort(1), new UShort(3), new UShort(2002))
+        );
 
         Assert.False(isGreaterThan.BoolValue);
     }
@@ -62,7 +69,8 @@ public sealed record AfterConditionTests
         IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(1), new UShort(3), new UShort(2000)),
             new Date(new UShort(2), new UShort(2), new UShort(2001)),
-            new Date(new UShort(3), new UShort(1), new UShort(2002)));
+            new Date(new UShort(3), new UShort(1), new UShort(2002))
+        );
 
         Assert.False(isGreaterThan.BoolValue);
     }
@@ -73,7 +81,8 @@ public sealed record AfterConditionTests
         IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(1), new UShort(1), new UShort(2002)),
             new Date(new UShort(2), new UShort(2), new UShort(2001)),
-            new Date(new UShort(3), new UShort(3), new UShort(2000)));
+            new Date(new UShort(3), new UShort(3), new UShort(2000))
+        );
 
         Assert.True(isGreaterThan.BoolValue);
     }
@@ -87,7 +96,8 @@ public sealed record AfterConditionTests
         IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(1), month, year),
             new Date(new UShort(2), month, year),
-            new Date(new UShort(3), month, year));
+            new Date(new UShort(3), month, year)
+        );
 
         Assert.False(isGreaterThan.BoolValue);
     }
@@ -100,7 +110,8 @@ public sealed record AfterConditionTests
         IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(1), new UShort(1), year),
             new Date(new UShort(1), new UShort(2), year),
-            new Date(new UShort(1), new UShort(3), year));
+            new Date(new UShort(1), new UShort(3), year)
+        );
 
         Assert.False(isGreaterThan.BoolValue);
     }
@@ -111,7 +122,8 @@ public sealed record AfterConditionTests
         IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(1), new UShort(1), new UShort(2000)),
             new Date(new UShort(1), new UShort(1), new UShort(2001)),
-            new Date(new UShort(1), new UShort(1), new UShort(2002)));
+            new Date(new UShort(1), new UShort(1), new UShort(2002))
+        );
 
         Assert.False(isGreaterThan.BoolValue);
     }
@@ -125,7 +137,8 @@ public sealed record AfterConditionTests
         IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(3), month, year),
             new Date(new UShort(2), month, year),
-            new Date(new UShort(1), month, year));
+            new Date(new UShort(1), month, year)
+        );
 
         Assert.True(isGreaterThan.BoolValue);
     }
@@ -138,7 +151,8 @@ public sealed record AfterConditionTests
         IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(1), new UShort(3), year),
             new Date(new UShort(1), new UShort(2), year),
-            new Date(new UShort(1), new UShort(1), year));
+            new Date(new UShort(1), new UShort(1), year)
+        );
 
         Assert.True(isGreaterThan.BoolValue);
     }
@@ -149,7 +163,8 @@ public sealed record AfterConditionTests
         IBool isGreaterThan = new AfterCondition(
             new Date(new UShort(1), new UShort(1), new UShort(2003)),
             new Date(new UShort(1), new UShort(1), new UShort(2002)),
-            new Date(new UShort(1), new UShort(1), new UShort(2001)));
+            new Date(new UShort(1), new UShort(1), new UShort(2001))
+        );
 
         Assert.True(isGreaterThan.BoolValue);
     }
@@ -161,7 +176,8 @@ public sealed record AfterConditionTests
             new Date(new UShort(1), new UShort(1), new UShort(2000)),
             new Date(new UShort(1), new UShort(1), new UShort(2001)),
             new Date(new UShort(1), new UShort(1), new UShort(2002)),
-            new Date(new UShort(1), new UShort(1), new UShort(2002)));
+            new Date(new UShort(1), new UShort(1), new UShort(2002))
+        );
 
         Assert.False(isGreaterThan.BoolValue);
     }
@@ -177,25 +193,29 @@ public sealed record AfterConditionTests
     public void ThrowsExceptionOnEmptyCollection()
     {
         IBool isGreaterThan = new AfterCondition();
-        Assert.Throws<ArgumentException>(() => isGreaterThan.BoolValue);
+        _ = Assert.Throws<ArgumentException>(() => isGreaterThan.BoolValue);
     }
 
     [Fact]
     public void ThrowsExceptionOnEmptyArguments()
     {
         IBool equality = new AfterCondition();
-        Assert.Throws<ArgumentException>(() => equality.BoolValue);
+        _ = Assert.Throws<ArgumentException>(() => equality.BoolValue);
     }
 
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() => new AfterCondition(new CurrentDate()).GetHashCode());
+        _ = Assert.Throws<NotSupportedException>(() =>
+            new AfterCondition(new CurrentDate()).GetHashCode()
+        );
     }
 
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() => new AfterCondition(new CurrentDate()).ToString());
+        _ = Assert.Throws<NotSupportedException>(() =>
+            new AfterCondition(new CurrentDate()).ToString()
+        );
     }
 }

@@ -1,4 +1,4 @@
-﻿using Pure.Primitives.Abstractions.Date;
+using Pure.Primitives.Abstractions.Date;
 using Pure.Primitives.Abstractions.Number;
 
 namespace Pure.Primitives.Date.Operations;
@@ -13,7 +13,12 @@ public sealed record DayNumber : INumber<uint>
     }
 
     uint INumber<uint>.NumberValue =>
-        (uint)new DateOnly(_date.Year.NumberValue, _date.Month.NumberValue, _date.Day.NumberValue).DayNumber;
+        (uint)
+            new DateOnly(
+                _date.Year.NumberValue,
+                _date.Month.NumberValue,
+                _date.Day.NumberValue
+            ).DayNumber;
 
     public override int GetHashCode()
     {

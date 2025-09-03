@@ -1,4 +1,4 @@
-﻿using Pure.Primitives.Abstractions.Bool;
+using Pure.Primitives.Abstractions.Bool;
 using Pure.Primitives.Abstractions.Date;
 
 namespace Pure.Primitives.Date.Operations;
@@ -21,11 +21,11 @@ public sealed record BeforeCondition : IBool
                 throw new ArgumentException();
             }
 
-            IEnumerable<DateOnly> dates =
-                _values.Select(x => new DateOnly(
-                    x.Year.NumberValue,
-                    x.Month.NumberValue,
-                    x.Day.NumberValue));
+            IEnumerable<DateOnly> dates = _values.Select(x => new DateOnly(
+                x.Year.NumberValue,
+                x.Month.NumberValue,
+                x.Day.NumberValue
+            ));
 
             DateOnly prev = DateOnly.MinValue;
 

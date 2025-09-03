@@ -1,4 +1,4 @@
-﻿using Pure.Primitives.Abstractions.Bool;
+using Pure.Primitives.Abstractions.Bool;
 using Pure.Primitives.Abstractions.Date;
 using Pure.Primitives.Abstractions.Number;
 using Pure.Primitives.Materialized.Date;
@@ -18,7 +18,8 @@ public sealed record NotAfterConditionTests
         IBool condition = new NotAfterCondition(
             new Date(new UShort(1), month, year),
             new Date(new UShort(3), month, year),
-            new Date(new UShort(2), month, year));
+            new Date(new UShort(2), month, year)
+        );
 
         Assert.False(condition.BoolValue);
     }
@@ -41,7 +42,11 @@ public sealed record NotAfterConditionTests
     [Fact]
     public void TakesPositiveResultOnSameValues()
     {
-        IBool condition = new NotAfterCondition(new CurrentDate(), new CurrentDate(), new CurrentDate());
+        IBool condition = new NotAfterCondition(
+            new CurrentDate(),
+            new CurrentDate(),
+            new CurrentDate()
+        );
         Assert.True(condition.BoolValue);
     }
 
@@ -52,7 +57,8 @@ public sealed record NotAfterConditionTests
             new Date(new UShort(1), new UShort(1), new UShort(2000)),
             new Date(new UShort(1), new UShort(1), new UShort(2001)),
             new Date(new UShort(1), new UShort(1), new UShort(2002)),
-            new Date(new UShort(1), new UShort(1), new UShort(2002)));
+            new Date(new UShort(1), new UShort(1), new UShort(2002))
+        );
 
         Assert.True(condition.BoolValue);
     }
@@ -68,25 +74,29 @@ public sealed record NotAfterConditionTests
     public void ThrowsExceptionOnEmptyCollection()
     {
         IBool condition = new NotAfterCondition();
-        Assert.Throws<ArgumentException>(() => condition.BoolValue);
+        _ = Assert.Throws<ArgumentException>(() => condition.BoolValue);
     }
 
     [Fact]
     public void ThrowsExceptionOnEmptyArguments()
     {
         IBool condition = new NotAfterCondition();
-        Assert.Throws<ArgumentException>(() => condition.BoolValue);
+        _ = Assert.Throws<ArgumentException>(() => condition.BoolValue);
     }
 
     [Fact]
     public void ThrowsExceptionOnGetHashCode()
     {
-        Assert.Throws<NotSupportedException>(() => new NotAfterCondition(new CurrentDate()).GetHashCode());
+        _ = Assert.Throws<NotSupportedException>(() =>
+            new NotAfterCondition(new CurrentDate()).GetHashCode()
+        );
     }
 
     [Fact]
     public void ThrowsExceptionOnToString()
     {
-        Assert.Throws<NotSupportedException>(() => new NotAfterCondition(new CurrentDate()).ToString());
+        _ = Assert.Throws<NotSupportedException>(() =>
+            new NotAfterCondition(new CurrentDate()).ToString()
+        );
     }
 }
