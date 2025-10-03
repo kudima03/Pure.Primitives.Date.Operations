@@ -10,7 +10,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.0" />
     <PackageReference Include="Pure.Primitives" Version="3.3.0" />
     <PackageReference Include="Pure.Primitives.Materialized" Version="0.1.0" />
     <PackageReference Include="Pure.Primitives.Random" Version="0.5.0" />
