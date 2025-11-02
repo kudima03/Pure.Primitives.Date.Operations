@@ -12,7 +12,7 @@ public sealed record BeforeCondition : IBool
         _values = values;
     }
 
-    bool IBool.BoolValue
+    public bool BoolValue
     {
         get
         {
