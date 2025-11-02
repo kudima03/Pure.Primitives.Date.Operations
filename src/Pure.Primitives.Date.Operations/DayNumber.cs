@@ -12,7 +12,7 @@ public sealed record DayNumber : INumber<uint>
         _date = date;
     }
 
-    uint INumber<uint>.NumberValue =>
+    public uint NumberValue =>
         (uint)
             new DateOnly(
                 _date.Year.NumberValue,
