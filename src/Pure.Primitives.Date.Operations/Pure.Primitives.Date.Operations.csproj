@@ -1,9 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFrameworks>net7.0;net8.0;net9.0;net10.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsAotCompatible>true</IsAotCompatible>
+    <PublishAot>true</PublishAot>
   </PropertyGroup>
   <PropertyGroup>
     <PackageId>Pure.Primitives.Date.Operations</PackageId>
@@ -15,6 +17,5 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Pure.Primitives.Abstractions" Version="4.3.0" />
-    <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="9.0.11" />
   </ItemGroup>
 </Project>
