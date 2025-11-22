@@ -9,35 +9,30 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./src
+        working-directory: ./src/Pure.Primitives.Date.Operations
+
+    strategy:
+      fail-fast: false
+      matrix:
+        dotnet: [ '7.0', '8.0', '9.0', '10.0' ]
+        runtime: [
+          'linux-x64',
+          'linux-arm64',
+          'linux-arm',
+          'win-x64',
+          'win-arm64',
+          'win-x86',
+          'osx-x64',
+          'osx-arm64'
+        ]
+
     steps:
-    - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v5
-      with:
-        dotnet-version: 9.0.x
+      - name: Setup .NET SDK ${{ matrix.dotnet }}
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.x.x
 
-    - name: Build NativeAOT for linux-x64
-      run: dotnet publish -r linux-x64 -warnaserror /p:RunAnalyzers=true
-
-    - name: Build NativeAOT for linux-arm64
-      run: dotnet publish -r linux-arm64 -warnaserror /p:RunAnalyzers=true
-
-    - name: Build NativeAOT for linux-arm
-      run: dotnet publish -r linux-arm -warnaserror /p:RunAnalyzers=true
-
-    - name: Build NativeAOT for win-x64
-      run: dotnet publish -r win-x64 -warnaserror /p:RunAnalyzers=true
-
-    - name: Build NativeAOT for win-arm64
-      run: dotnet publish -r win-arm64 -warnaserror /p:RunAnalyzers=true
-
-    - name: Build NativeAOT for win-x86
-      run: dotnet publish -r win-x86 -warnaserror /p:RunAnalyzers=true
-
-    - name: Build NativeAOT for osx-x64
-      run: dotnet publish -r osx-x64 -warnaserror /p:RunAnalyzers=true
-
-    - name: Build NativeAOT for osx-arm64
-      run: dotnet publish -r osx-arm64 -warnaserror /p:RunAnalyzers=true
+      - name: Build NativeAOT ${{ matrix.runtime }} with .NET ${{ matrix.dotnet }}
+        run: dotnet publish --framework net${{ matrix.dotnet }} --runtime ${{ matrix.runtime }} --self-contained --configuration Release -warnaserror
