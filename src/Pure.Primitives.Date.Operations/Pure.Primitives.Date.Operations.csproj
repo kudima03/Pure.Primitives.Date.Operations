@@ -17,6 +17,5 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Pure.Primitives.Abstractions" Version="4.3.0" />
-    <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="10.0.0" />
   </ItemGroup>
 </Project>
