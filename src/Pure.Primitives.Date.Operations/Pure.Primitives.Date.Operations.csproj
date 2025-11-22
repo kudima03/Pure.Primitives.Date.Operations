@@ -5,6 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsAotCompatible>true</IsAotCompatible>
+    <PublishAot>true</PublishAot>
   </PropertyGroup>
   <PropertyGroup>
     <PackageId>Pure.Primitives.Date.Operations</PackageId>
