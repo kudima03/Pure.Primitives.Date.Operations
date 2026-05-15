@@ -6,6 +6,8 @@
     <Nullable>enable</Nullable>
     <IsAotCompatible>true</IsAotCompatible>
     <PublishAot>true</PublishAot>
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <PackageValidationBaselineVersion>0.3.1</PackageValidationBaselineVersion>
   </PropertyGroup>
   <PropertyGroup>
     <PackageId>Pure.Primitives.Date.Operations</PackageId>
@@ -14,8 +16,6 @@
     <Authors>Dmitry Kurochkin</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/kudima03/Pure.Primitives.Date.Operations</PackageProjectUrl>
-    <EnablePackageValidation>true</EnablePackageValidation>
-    <PackageValidationBaselineVersion>0.3.1</PackageValidationBaselineVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Pure.Primitives.Abstractions" Version="4.3.0" />
