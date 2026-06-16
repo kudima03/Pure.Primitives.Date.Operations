@@ -29,9 +29,9 @@ public sealed record NotAfterConditionTests
     {
         IEnumerable<IDate> randomDates = new RandomDateCollection(new UShort(1000))
             .Select(x => new MaterializedDate(x).Value)
-            .OrderBy(x => x.Year)
-            .ThenBy(x => x.Month)
-            .ThenBy(x => x.Day)
+            .OrderByDescending(x => x.Year)
+            .ThenByDescending(x => x.Month)
+            .ThenByDescending(x => x.Day)
             .Select(x => new Date(x));
 
         IBool condition = new NotAfterCondition(randomDates);
@@ -60,7 +60,7 @@ public sealed record NotAfterConditionTests
             new Date(new UShort(1), new UShort(1), new UShort(2002))
         );
 
-        Assert.True(condition.BoolValue);
+        Assert.False(condition.BoolValue);
     }
 
     [Fact]

@@ -27,11 +27,11 @@ public sealed record AfterCondition : IBool
                 x.Day.NumberValue
             ));
 
-            DateOnly prev = DateOnly.MaxValue;
+            DateOnly prev = DateOnly.MinValue;
 
             foreach (DateOnly date in dates)
             {
-                if (prev <= date)
+                if (prev >= date)
                 {
                     return false;
                 }
