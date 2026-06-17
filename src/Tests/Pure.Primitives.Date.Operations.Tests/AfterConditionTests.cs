@@ -30,9 +30,9 @@ public sealed record AfterConditionTests
         IEnumerable<IDate> randomDates = new RandomDateCollection(new UShort(1000))
             .Select(x => new MaterializedDate(x).Value)
             .Distinct()
-            .OrderByDescending(x => x.Year)
-            .ThenByDescending(x => x.Month)
-            .ThenByDescending(x => x.Day)
+            .OrderBy(x => x.Year)
+            .ThenBy(x => x.Month)
+            .ThenBy(x => x.Day)
             .Select(x => new Date(x));
 
         IBool isAfter = new AfterCondition(randomDates);
@@ -60,7 +60,7 @@ public sealed record AfterConditionTests
             new Date(new UShort(1), new UShort(3), new UShort(2002))
         );
 
-        Assert.False(isGreaterThan.BoolValue);
+        Assert.True(isGreaterThan.BoolValue);
     }
 
     [Fact]
@@ -72,7 +72,7 @@ public sealed record AfterConditionTests
             new Date(new UShort(3), new UShort(1), new UShort(2002))
         );
 
-        Assert.False(isGreaterThan.BoolValue);
+        Assert.True(isGreaterThan.BoolValue);
     }
 
     [Fact]
@@ -84,7 +84,7 @@ public sealed record AfterConditionTests
             new Date(new UShort(3), new UShort(3), new UShort(2000))
         );
 
-        Assert.True(isGreaterThan.BoolValue);
+        Assert.False(isGreaterThan.BoolValue);
     }
 
     [Fact]
@@ -99,7 +99,7 @@ public sealed record AfterConditionTests
             new Date(new UShort(3), month, year)
         );
 
-        Assert.False(isGreaterThan.BoolValue);
+        Assert.True(isGreaterThan.BoolValue);
     }
 
     [Fact]
@@ -113,7 +113,7 @@ public sealed record AfterConditionTests
             new Date(new UShort(1), new UShort(3), year)
         );
 
-        Assert.False(isGreaterThan.BoolValue);
+        Assert.True(isGreaterThan.BoolValue);
     }
 
     [Fact]
@@ -125,7 +125,7 @@ public sealed record AfterConditionTests
             new Date(new UShort(1), new UShort(1), new UShort(2002))
         );
 
-        Assert.False(isGreaterThan.BoolValue);
+        Assert.True(isGreaterThan.BoolValue);
     }
 
     [Fact]
@@ -140,7 +140,7 @@ public sealed record AfterConditionTests
             new Date(new UShort(1), month, year)
         );
 
-        Assert.True(isGreaterThan.BoolValue);
+        Assert.False(isGreaterThan.BoolValue);
     }
 
     [Fact]
@@ -154,7 +154,7 @@ public sealed record AfterConditionTests
             new Date(new UShort(1), new UShort(1), year)
         );
 
-        Assert.True(isGreaterThan.BoolValue);
+        Assert.False(isGreaterThan.BoolValue);
     }
 
     [Fact]
@@ -166,7 +166,7 @@ public sealed record AfterConditionTests
             new Date(new UShort(1), new UShort(1), new UShort(2001))
         );
 
-        Assert.True(isGreaterThan.BoolValue);
+        Assert.False(isGreaterThan.BoolValue);
     }
 
     [Fact]

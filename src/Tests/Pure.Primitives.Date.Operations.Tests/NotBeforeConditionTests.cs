@@ -29,9 +29,9 @@ public sealed record NotBeforeConditionTests
     {
         IEnumerable<IDate> randomDates = new RandomDateCollection(new UShort(1000))
             .Select(x => new MaterializedDate(x).Value)
-            .OrderByDescending(x => x.Year)
-            .ThenByDescending(x => x.Month)
-            .ThenByDescending(x => x.Day)
+            .OrderBy(x => x.Year)
+            .ThenBy(x => x.Month)
+            .ThenBy(x => x.Day)
             .Select(x => new Date(x));
 
         IBool condition = new NotBeforeCondition(randomDates);
@@ -60,7 +60,7 @@ public sealed record NotBeforeConditionTests
             new Date(new UShort(1), new UShort(1), new UShort(2002))
         );
 
-        Assert.False(condition.BoolValue);
+        Assert.True(condition.BoolValue);
     }
 
     [Fact]
