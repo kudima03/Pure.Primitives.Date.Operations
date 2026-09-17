@@ -15,6 +15,8 @@ dotnet test --no-restore                      # run xunit tests
 dotnet pack --configuration Release -p:Version=<version> --output .
 ```
 
+CI additionally passes `-p:AssemblyVersion` (pinned to the major) and `-p:FileVersion`; see `.github/workflows/publish-nuget.yml`.
+
 ## Architecture
 
 This is an **implementation NuGet library** — no abstractions are defined here, only concrete implementations of interfaces from `Pure.Primitives.Abstractions`.
