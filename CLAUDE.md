@@ -32,13 +32,13 @@ All condition types accept `params IEnumerable<IDate>` and throw `ArgumentExcept
 
 **Dependency on `Pure.Primitives.Abstractions`:** provides `IDate` (day/month/year as `INumber<ushort>`), `IBool` (`BoolValue`), and `INumber<T>` (`NumberValue`). The local sibling repo lives at `../../Pure.Primitives.Abstractions/` relative to `./src`.
 
-**Multi-targeting:** net7.0, net8.0, net9.0, net10.0. All types must remain AOT-compatible (`IsAotCompatible = true`, `PublishAot = true`).
+**Multi-targeting:** net7.0, net8.0, net9.0, net10.0, net11.0. All types must remain AOT-compatible (`IsAotCompatible = true`, `PublishAot = true`).
 
 **Package validation:** `EnablePackageValidation = true` with `PackageValidationBaselineVersion = 1.0.0`. Breaking API changes fail the build.
 
 **Publishing:** triggered by pushing a semver tag (`*.*.*`). The tag becomes the `PackageVersion` passed to `dotnet pack`.
 
-**Tests:** xunit project targeting net10.0, one test class per public type. Coverage threshold: 98% failure / 99% warning.
+**Tests:** xunit project targeting net11.0, one test class per public type. Coverage threshold: 98% failure / 99% warning.
 
 ## Code Style
 
