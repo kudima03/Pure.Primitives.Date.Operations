@@ -48,6 +48,7 @@ All comparison types accept a sequence of `IDate` values and implement `IBool`.
 - .NET 8
 - .NET 9
 - .NET 10
+- .NET 11
 
 ## Installation
 
