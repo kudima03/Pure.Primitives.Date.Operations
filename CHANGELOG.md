@@ -6,6 +6,18 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [1.1.0] — 2026-11-11
+
+### Added
+
+- Added `net11.0` target framework support. Existing target frameworks are unchanged.
+
+### Changed
+
+- Updated `Pure.Primitives.Abstractions` to 4.4.0.
+
+---
+
 ## [1.0.0] — 2026-06-17
 
 ### Fixed
